@@ -1,5 +1,6 @@
 package com.stackroute.beans;
 
+
 public class Movie {
     Actor actor;
 
@@ -26,5 +27,3 @@ public class Movie {
                 '}';
     }
 }
-
-
