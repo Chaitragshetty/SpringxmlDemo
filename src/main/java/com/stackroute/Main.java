@@ -15,6 +15,7 @@ import org.springframework.core.io.Resource;
 
         public static void main(String[] args) {
 
+
             // Using XmlBeanFactory
             Resource resource = new ClassPathResource("beans.xml");
             BeanFactory beanFactory = new XmlBeanFactory(resource);
