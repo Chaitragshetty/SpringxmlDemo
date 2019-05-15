@@ -1,46 +1,19 @@
 package com.stackroute.beans;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.BeanNameAware;
-import org.springframework.beans.factory.annotation.Autowired;
-
-public class Actor implements BeanNameAware, BeanFactoryAware
-{
-
+public class Actor {
     private String name;
-    private int age;
-    public Actor(String name, int age, String gender) {
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    @Override
-    public String toString() {
-        return "Actor{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", gender='" + gender + '\'' +
-                '}';
-    }
-
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
     private String gender;
-    public Actor(){}
+    private int age;
 
-    public Actor(String name, int age) {
-        this.name = name;
-        this.age = age;
+    Actor()
+    {
+
+    }
+    Actor(String name, String gender, int age)
+    {
+        this.name=name;
+        this.gender=gender;
+        this.age=age;
     }
 
     public String getName() {
@@ -49,6 +22,14 @@ public class Actor implements BeanNameAware, BeanFactoryAware
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public int getAge() {
@@ -60,12 +41,11 @@ public class Actor implements BeanNameAware, BeanFactoryAware
     }
 
     @Override
-    public void setBeanName(String s) {
-        System.out.println("in BeanNameAware "+s);
-    }
-
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("In BeanFactoryAware "+beanFactory );
+    public String toString() {
+        return "Actor{" +
+                "name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
