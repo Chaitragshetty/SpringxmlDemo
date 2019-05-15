@@ -1,23 +1,48 @@
 package com.stackroute.beans;
 
+import com.stackroute.beans.Actor;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
-public class Movie implements ApplicationContextAware, BeanFactoryAware, BeanNameAware {
-    Actor actor;
+public class Movie implements ApplicationContextAware
+{
+    private String movieName;
+    private String director;
+    private Actor actor;
 
-    Movie() {
-
+    public Movie() { }
+    @Autowired
+    public Movie(String movieName, String director, Actor actor1) {
+        this.movieName = movieName;
+        this.director = director;
+        this.actor= actor1;
     }
 
-    @Autowired
-    Movie(Actor actor) {
-        this.actor = actor;
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "movieName='" + movieName + '\'' +
+                ", director='" + director + '\'' +
+                ", actor=" + actor +
+                '}';
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
     }
 
     public Actor getActor() {
@@ -29,21 +54,9 @@ public class Movie implements ApplicationContextAware, BeanFactoryAware, BeanNam
     }
 
     @Override
-    public String toString() {
-        return "Movie{" +
-                "actor=" + actor +
-                '}';
-    }
-
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("In setApplicationContext: " + applicationContext);
-    }
-
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        System.out.println("In setBeanFactory: " + beanFactory);
-    }
-
-    public void setBeanName(String s) {
-        System.out.println("In setBeanName: " + s);
+        System.out.println(applicationContext);
+        Actor actor=(Actor)applicationContext.getBean("actor");
+        System.out.println(actor);
     }
 }
